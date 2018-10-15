@@ -105,3 +105,60 @@ fileHandle.write(String(result).data(using: .utf8)!)
 fileHandle.write("\n".data(using: .utf8)!)
 
 //
+===================================================================
+
+/* 
+   위의 답안은 오답이다. 이유는 3*3 배열만 생각하고 작성한 코드이기 때문. 
+   그래서 다시 작성한 코드이다. 
+*/
+
+import Foundation
+
+// Complete the diagonalDifference function below.
+func diagonalDifference(arr: [[Int]]) -> Int {
+// SUM 초기화
+    var sum1 = 0
+    var sum2 = 0
+    var j = 0
+// 계산
+    for i in (0..<arr.count){
+        j = (arr.count) - i - 1
+        sum1 += arr[i][i]
+        sum2 += arr[i][j]
+    }
+    // sum1 = arr[0][0] + arr[1][1] + arr[2][2]
+    // sum2 = arr[0][2] + arr[1][1] + arr[2][0]
+    var total = sum1 - sum2
+    
+// 절대값
+    if (total < 0) {
+        total = -total
+    }
+    return total
+}
+
+let stdout = ProcessInfo.processInfo.environment["OUTPUT_PATH"]!
+FileManager.default.createFile(atPath: stdout, contents: nil, attributes: nil)
+let fileHandle = FileHandle(forWritingAtPath: stdout)!
+
+guard let n = Int((readLine()?.trimmingCharacters(in: .whitespacesAndNewlines))!)
+else { fatalError("Bad input") }
+
+let arr: [[Int]] = AnyIterator{ readLine() }.prefix(n).map {
+    let arrRow: [Int] = $0.split(separator: " ").map {
+        if let arrItem = Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) {
+            return arrItem
+        } else { fatalError("Bad input") }
+    }
+
+    guard arrRow.count == n else { fatalError("Bad input") }
+
+    return arrRow
+}
+
+guard arr.count == n else { fatalError("Bad input") }
+
+let result = diagonalDifference(arr: arr)
+
+fileHandle.write(String(result).data(using: .utf8)!)
+fileHandle.write("\n".data(using: .utf8)!)

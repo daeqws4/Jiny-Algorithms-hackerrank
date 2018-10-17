@@ -16,8 +16,8 @@ func dayOfProgrammer(year: Int) -> String {
     // 년도와 256번째를 카운팅하기위한 카운트, 월을 초기화해준다.
     var count = 256, month = 0,strmonth = ""
 
-    // 윤년인지 구분하는 계산은 년도를 4로 나눠서 나머지가 1이면 윤년으로 처리했다.
-    if year%4 == 2 {
+    // 윤년인지 구분하는 계산은 년도를 4로 나눠서 나머지가 0이면 윤년으로 처리했다.
+    if year%4 == 0 {
         dayAr = dayArr[1]
     }else {
         dayAr = dayArr[0]

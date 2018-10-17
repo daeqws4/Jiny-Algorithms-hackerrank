@@ -17,10 +17,10 @@ func dayOfProgrammer(year: Int) -> String {
     var count = 256, month = 0,strmonth = ""
 
     // 윤년인지 구분하는 계산은 년도를 4로 나눠서 나머지가 1이면 윤년으로 처리했다.
-    if year%4 == 1 {
-        dayAr = dayArr[0]
-    }else {
+    if year%4 == 2 {
         dayAr = dayArr[1]
+    }else {
+        dayAr = dayArr[0]
     }
 
     /*
